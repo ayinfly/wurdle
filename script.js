@@ -1,6 +1,7 @@
 let currentWord = "because";
 let lines = []
 let guessNum = 1
+let currentGuess = []
 
 
 fetch('text.txt')
@@ -24,6 +25,10 @@ function clearText() {
         }
     }
     guessNum = 1;
+}
+
+function keyPress(key) {
+
 }
 
 function getRandomNumber() {
