@@ -21,9 +21,11 @@ button {
     border-radius: 3px;
 }
 
-button:hover {
-    transition-duration: 0.1s;
-    background-color: #3A3A3A;
+@media (hover: hover) {
+    button:hover {
+        transition-duration: 0.1s;
+        background-color: #3A3A3A;
+    }
 }
 
 button:active {

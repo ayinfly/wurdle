@@ -27,8 +27,35 @@ function clearText() {
     guessNum = 1;
 }
 
-function keyPress(key) {
+function updateBoard() {
+    for (let i = 1; i <= currentGuess.length; i++) {
+        document.getElementById(`l${i}${guessNum}`).textContent = currentGuess[i-1];
+    }
 
+    for (let j = currentGuess.length+1; j <= 7; j++) {
+        document.getElementById(`l${j}${guessNum}`).textContent = '';
+    }
+}
+
+function keyPress(key) {
+    if (currentGuess.length < 7) {
+        currentGuess.push(key);
+        updateBoard();
+    }
+}
+
+function keyDelete() {
+    if (currentGuess.length > 0) {
+        currentGuess.pop();
+        updateBoard();
+    }
+}
+
+function keySubmit() {
+    if (currentGuess.length == 7) {
+        guessNum += 1;
+        currentGuess = [];
+    }
 }
 
 function getRandomNumber() {
