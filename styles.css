@@ -10,6 +10,7 @@ body {
 h1 {
     text-align: center;
     color:white;
+    padding-bottom: 50px;
 }
 
 #board {

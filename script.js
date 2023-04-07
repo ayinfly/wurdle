@@ -1,6 +1,6 @@
 let currentWord = "because";
 let lines = []
-let guess = 1
+let guessNum = 1
 
 
 fetch('text.txt')
@@ -10,8 +10,20 @@ fetch('text.txt')
   });
 
 function changeText() {
-    currentWord = "testing";
-    document.getElementById("text").textContent = lines[getRandomNumber()];
+    currentWord = lines[getRandomNumber()];
+    for (let i = 1; i <= 7; i++) {
+        document.getElementById(`l${i}${guessNum}`).textContent = currentWord[i-1];
+    }
+    guessNum++;
+}
+
+function clearText() {
+    for (let i = 1; i <= 7; i++) {
+        for (let j = 1; j <= 7; j++) {
+            document.getElementById(`l${i}${j}`).textContent = '';
+        }
+    }
+    guessNum = 1;
 }
 
 function getRandomNumber() {
