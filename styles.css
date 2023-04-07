@@ -7,10 +7,30 @@ body {
     background-color: #301934;
 }
 
+button {
+    font-family: inherit;
+    font-size: 20px;
+    text-transform: capitalize;
+    background-color: grey;
+    color: white;
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+}
+
+button:hover {
+    transition-duration: 0.1s;
+    background-color: #3A3A3A;
+}
+
+button:active {
+    transform:translateY(4px);
+}
+
 h1 {
     text-align: center;
     color:white;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
 }
 
 #board {
@@ -22,6 +42,7 @@ h1 {
     grid-gap: 10px;
     color: white;
     text-transform: capitalize;
+    padding-bottom: 50px;
 }
 
 .letter {
@@ -35,4 +56,33 @@ h1 {
     background-color: #301934;
     border: 1px solid gray;
     font-size: 2em;
+}
+
+#keyboardTop {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: 50px;
+    grid-gap: 5px;
+    padding-bottom: 5px;
+}
+
+#keyboardMid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(9, 40px);
+    grid-template-rows: 50px;
+    grid-gap: 5px;
+    padding-bottom: 5px;
+}
+
+#keyboardBot {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 60px repeat(7, 40px) 60px;
+    grid-template-rows: 50px;
+    grid-gap: 5px;
 }
