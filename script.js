@@ -1,5 +1,6 @@
 let currentWord = "because";
 let lines = []
+let guess = 1
 
 
 fetch('text.txt')
