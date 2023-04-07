@@ -87,7 +87,7 @@ h1 {
     display: grid;
     justify-content: center;
     align-content: center;
-    grid-template-columns: 60px repeat(7, 35px) 60px;
+    grid-template-columns: 55px repeat(7, 35px) 55px;
     grid-template-rows: 50px;
     grid-gap: 5px;
 }
