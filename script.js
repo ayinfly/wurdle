@@ -1,8 +1,8 @@
 let currentWord = "because";
 let lines = []
 let guessNum = 1
-let currentGuess = []
-
+let currentGuess = ""
+let correctWord = "because"
 
 fetch('text.txt')
   .then(response => response.text())
@@ -30,31 +30,50 @@ function clearText() {
 function updateBoard() {
     for (let i = 1; i <= currentGuess.length; i++) {
         document.getElementById(`l${i}${guessNum}`).textContent = currentGuess[i-1];
+        document.getElementById(`l${i}${guessNum}`).style.border = "1px solid silver";
     }
 
     for (let j = currentGuess.length+1; j <= 7; j++) {
         document.getElementById(`l${j}${guessNum}`).textContent = '';
+        document.getElementById(`l${j}${guessNum}`).style.border = "1px solid gray";
     }
 }
 
 function keyPress(key) {
     if (currentGuess.length < 7) {
-        currentGuess.push(key);
+        currentGuess += key;
         updateBoard();
     }
 }
 
 function keyDelete() {
     if (currentGuess.length > 0) {
-        currentGuess.pop();
+        currentGuess = currentGuess.slice(0, currentGuess.length-1);
         updateBoard();
     }
 }
 
 function keySubmit() {
     if (currentGuess.length == 7) {
-        guessNum += 1;
-        currentGuess = [];
+        if (lines.includes(currentGuess)) {
+            wordCheck(currentGuess);
+            guessNum += 1;
+            currentGuess = "";
+        } else {
+            window.alert("invalid word");
+        }
+    }
+}
+
+function wordCheck(word) {
+    for (let i = 0; i < 7; i++) {
+        document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#8b8589";
+        if (correctWord.includes(word[i])) {
+            document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#8B8000";
+        }
+        if (word[i] == correctWord[i]) {
+            document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#023020";
+        }
     }
 }
 
