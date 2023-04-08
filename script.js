@@ -62,13 +62,18 @@ function keyDelete() {
 
 function keySubmit() {
     if (currentGuess.length == 7) {
-        console.log(wordList)
         if (wordList.includes(currentGuess)) {
             wordCheck(currentGuess);
             guessNum += 1;
             currentGuess = "";
         } else {
-            window.alert("invalid word");
+            for (let i = 0; i < 7; i++) {
+                let box = document.getElementById(`l${i+1}${guessNum}`)
+                box.style.animation = "none";
+                void box.offsetWidth;
+                box.style.animation = "horizontal-shaking 0.3s";
+
+            }
         }
     }
 }
@@ -76,7 +81,6 @@ function keySubmit() {
 function wordCheck(word) {
     for (let i = 0; i < 7; i++) {
         let box = document.getElementById(`l${i+1}${guessNum}`)
-
         if (word[i] == correctWord[i]) {
             box.style.backgroundColor = "#023020";
         } else if (correctWord.includes(word[i])) {
@@ -85,7 +89,21 @@ function wordCheck(word) {
             box.style.backgroundColor = "#000000";
         }
         box.style.transform = "rotateX(360deg)";
+
     }
+    if (word == correctWord) {
+        winner();
+    }
+}
+
+function winner(i) {
+    for (let i = 0; i < 7; i++) {
+        let box = document.getElementById(`l${i+1}${guessNum}`)
+        box.style.transform = "rotate(360deg)";
+
+    }
+    guessNum = 7;
+
 }
 
 function getRandomNumber() {
