@@ -10,6 +10,17 @@ fetch('text.txt')
     lines = text.split('\n');
   });
 
+document.addEventListener('keydown', function(event) {
+    const key = event.key;
+    if ("qwertyuiopasdfghjklzxcvbnm".includes(key)) {
+        keyPress(key);
+    } else if (key == "Enter") {
+        keySubmit();
+    } else if (key == "Backspace") {
+        keyDelete();
+    }
+});
+
 function changeText() {
     currentWord = lines[getRandomNumber()];
     for (let i = 1; i <= 7; i++) {
@@ -67,7 +78,7 @@ function keySubmit() {
 
 function wordCheck(word) {
     for (let i = 0; i < 7; i++) {
-        document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#8b8589";
+        document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#00fishi0000";
         if (correctWord.includes(word[i])) {
             document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#8B8000";
         }
