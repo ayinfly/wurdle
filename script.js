@@ -21,23 +21,6 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-function changeText() {
-    currentWord = lines[getRandomNumber()];
-    for (let i = 1; i <= 7; i++) {
-        document.getElementById(`l${i}${guessNum}`).textContent = currentWord[i-1];
-    }
-    guessNum++;
-}
-
-function clearText() {
-    for (let i = 1; i <= 7; i++) {
-        for (let j = 1; j <= 7; j++) {
-            document.getElementById(`l${i}${j}`).textContent = '';
-        }
-    }
-    guessNum = 1;
-}
-
 function updateBoard() {
     for (let i = 1; i <= currentGuess.length; i++) {
         document.getElementById(`l${i}${guessNum}`).textContent = currentGuess[i-1];
@@ -78,13 +61,16 @@ function keySubmit() {
 
 function wordCheck(word) {
     for (let i = 0; i < 7; i++) {
-        document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#00fishi0000";
-        if (correctWord.includes(word[i])) {
-            document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#8B8000";
-        }
+        let box = document.getElementById(`l${i+1}${guessNum}`)
+
         if (word[i] == correctWord[i]) {
-            document.getElementById(`l${i+1}${guessNum}`).style.backgroundColor = "#023020";
+            box.style.backgroundColor = "#023020";
+        } else if (correctWord.includes(word[i])) {
+            box.style.backgroundColor = "#8B8000";
+        } else {
+            box.style.backgroundColor = "#000000";
         }
+        box.style.transform = "rotateX(360deg)";
     }
 }
 

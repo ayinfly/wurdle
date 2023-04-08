@@ -64,6 +64,8 @@ h1 {
     background-color: #0D0011;
     border: 1px solid gray;
     font-size: 2em;
+    transition: 0.8s;
+    transform-style: preserve-3d;
 }
 
 #keyboardTop {
