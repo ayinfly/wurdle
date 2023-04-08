@@ -3,11 +3,19 @@ let lines = []
 let guessNum = 1
 let currentGuess = ""
 let correctWord = "because"
+let wordList = []
+let dailyWord = ""
+
+const now = new Date();
+const currentYear = now.getFullYear();
+const currentDay = now.getDay();
 
 fetch('text.txt')
   .then(response => response.text())
   .then(text => {
     lines = text.split('\n');
+    wordList = lines.map(word => word.toLowerCase());
+    setDailyWord();
   });
 
 document.addEventListener('keydown', function(event) {
@@ -20,6 +28,11 @@ document.addEventListener('keydown', function(event) {
         keyDelete();
     }
 });
+
+function setDailyWord() {
+    dailyWord = wordList[currentYear*currentDay%(wordList.length-1)];
+    correctWord = dailyWord
+}
 
 function updateBoard() {
     for (let i = 1; i <= currentGuess.length; i++) {
@@ -49,7 +62,8 @@ function keyDelete() {
 
 function keySubmit() {
     if (currentGuess.length == 7) {
-        if (lines.includes(currentGuess)) {
+        console.log(wordList)
+        if (wordList.includes(currentGuess)) {
             wordCheck(currentGuess);
             guessNum += 1;
             currentGuess = "";
@@ -75,5 +89,5 @@ function wordCheck(word) {
 }
 
 function getRandomNumber() {
-    return Math.floor(Math.random() * lines.length);
+    return Math.floor(Math.random() * wordList.length);
 }
