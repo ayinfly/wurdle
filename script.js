@@ -85,6 +85,7 @@ function wordCheck(word) {
     }
 
     console.log(hash);
+    colorKey("q", 1);
 
     for (let i = 0; i < 7; i++) {
         let box = document.getElementById(`l${i+1}${guessNum}`)
@@ -92,14 +93,17 @@ function wordCheck(word) {
             box.style.backgroundColor = "#023020";
             box.style.border = "1px solid #023020"
             hash[ALPHABET.indexOf(word[i])] -= 1;
+            colorKey(word[i], "green");
 
         } else if (correctWord.includes(word[i]) && hash[ALPHABET.indexOf(word[i])] > 0) {
             box.style.backgroundColor = "#8B8000";
             box.style.border = "1px solid #8B8000"
             hash[ALPHABET.indexOf(word[i])] -= 1;
+            colorKey(word[i], "yellow");
         } else {
             box.style.backgroundColor = "#303030";
             box.style.border = "1px solid #303030"
+            colorKey(word[i], "grey");
         }
         box.style.transform = "rotateX(360deg)";
 
@@ -109,7 +113,7 @@ function wordCheck(word) {
     }
 }
 
-function winner(i) {
+function winner() {
     for (let i = 0; i < 7; i++) {
         let box = document.getElementById(`l${i+1}${guessNum}`)
         box.style.animation = "wave 0.7s";
@@ -121,4 +125,16 @@ function winner(i) {
 
 function getRandomNumber() {
     return Math.floor(Math.random() * wordList.length);
+}
+
+function colorKey(key, color) {
+    let item = document.getElementById(key);
+    let styles = window.getComputedStyle(item);
+    if (color == "green") {
+        item.style.backgroundColor = "#023020";
+    } else if (color == "yellow" && styles.backgroundColor != "#023020") {
+        item.style.backgroundColor = "#8B8000";
+    } else if (styles.backgroundColor != "#023020" && styles.backgroundColor != "#8B8000") {
+        item.style.backgroundColor = "#303030";
+    }
 }
