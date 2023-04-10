@@ -85,7 +85,6 @@ function wordCheck(word) {
     }
 
     console.log(hash);
-    colorKey("q", 1);
 
     for (let i = 0; i < 7; i++) {
         let box = document.getElementById(`l${i+1}${guessNum}`)
@@ -130,11 +129,12 @@ function getRandomNumber() {
 function colorKey(key, color) {
     let item = document.getElementById(key);
     let styles = window.getComputedStyle(item);
+    console.log(styles.backgroundColor);
     if (color == "green") {
-        item.style.backgroundColor = "#023020";
-    } else if (color == "yellow" && styles.backgroundColor != "#023020") {
-        item.style.backgroundColor = "#8B8000";
-    } else if (styles.backgroundColor != "#023020" && styles.backgroundColor != "#8B8000") {
-        item.style.backgroundColor = "#303030";
+        item.style.backgroundColor = "rgb(2, 48, 32)";
+    } else if (color == "yellow" && styles.backgroundColor != "rgb(2, 48, 32)") {
+        item.style.backgroundColor = "rgb(139, 128, 0)";
+    } else if (styles.backgroundColor != "rgb(2, 48, 32)" && styles.backgroundColor != "rgb(139, 128, 0)") {
+        item.style.backgroundColor = "rgb(48, 48, 48)";
     }
 }
