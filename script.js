@@ -6,6 +6,7 @@ let correctWord = "because"
 let wordList = []
 let dailyWord = ""
 
+const ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 const now = new Date();
 const currentYear = now.getFullYear();
 const currentDay = now.getDay();
@@ -61,32 +62,41 @@ function keyDelete() {
 }
 
 function keySubmit() {
-    if (currentGuess.length == 7) {
-        if (wordList.includes(currentGuess)) {
-            wordCheck(currentGuess);
-            guessNum += 1;
-            currentGuess = "";
-        } else {
-            for (let i = 0; i < 7; i++) {
-                let box = document.getElementById(`l${i+1}${guessNum}`)
-                box.style.animation = "none";
-                void box.offsetWidth;
-                box.style.animation = "horizontal-shaking 0.3s";
+    if (currentGuess.length == 7 && wordList.includes(currentGuess)) {
+        wordCheck(currentGuess);
+        guessNum += 1;
+        currentGuess = "";
+    } else {
+        for (let i = 0; i < 7; i++) {
+            let box = document.getElementById(`l${i+1}${guessNum}`)
+            box.style.animation = "none";
+            void box.offsetWidth;
+            box.style.animation = "horizontal-shaking 0.3s";
 
-            }
         }
     }
 }
 
 function wordCheck(word) {
+    let hash = Array(26).fill(0);
+
+    for (let i = 0; i < 7; i++) {
+        hash[ALPHABET.indexOf(correctWord[i])] += 1;
+    }
+
+    console.log(hash);
+
     for (let i = 0; i < 7; i++) {
         let box = document.getElementById(`l${i+1}${guessNum}`)
         if (word[i] == correctWord[i]) {
             box.style.backgroundColor = "#023020";
             box.style.border = "1px solid #023020"
-        } else if (correctWord.includes(word[i])) {
+            hash[ALPHABET.indexOf(word[i])] -= 1;
+
+        } else if (correctWord.includes(word[i]) && hash[ALPHABET.indexOf(word[i])] > 0) {
             box.style.backgroundColor = "#8B8000";
             box.style.border = "1px solid #8B8000"
+            hash[ALPHABET.indexOf(word[i])] -= 1;
         } else {
             box.style.backgroundColor = "#303030";
             box.style.border = "1px solid #303030"
