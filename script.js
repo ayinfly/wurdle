@@ -83,10 +83,13 @@ function wordCheck(word) {
         let box = document.getElementById(`l${i+1}${guessNum}`)
         if (word[i] == correctWord[i]) {
             box.style.backgroundColor = "#023020";
+            box.style.border = "1px solid #023020"
         } else if (correctWord.includes(word[i])) {
             box.style.backgroundColor = "#8B8000";
+            box.style.border = "1px solid #8B8000"
         } else {
-            box.style.backgroundColor = "#000000";
+            box.style.backgroundColor = "#303030";
+            box.style.border = "1px solid #303030"
         }
         box.style.transform = "rotateX(360deg)";
 
