@@ -1,12 +1,13 @@
 let currentWord = "because";
-let lines = []
-let guessNum = 1
-let currentGuess = ""
-let correctWord = "because"
-let wordList = []
-let dailyWord = ""
+let lines = [];
+let guessNum = 1;
+let currentGuess = "";
+let correctWord = "because";
+let wordList = [];
+let wordBank = [];
+let dailyWord = "";
 
-const ALPHABET = "abcdefghijklmnopqrstuvwxyz"
+const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 const now = new Date();
 const currentYear = now.getFullYear();
 const currentDay = now.getDay();
@@ -17,7 +18,14 @@ fetch('text.txt')
     lines = text.split('\n');
     wordList = lines.map(word => word.toLowerCase());
     setDailyWord();
-  });
+});
+
+fetch('bank.txt')
+  .then(response => response.text())
+  .then(text => {
+    lines = text.split('\n');
+    wordBank = lines.map(word => word.toLowerCase());
+});
 
 document.addEventListener('keydown', function(event) {
     const key = event.key;
@@ -62,7 +70,7 @@ function keyDelete() {
 }
 
 function keySubmit() {
-    if (currentGuess.length == 7 && wordList.includes(currentGuess)) {
+    if (currentGuess.length == 7 && wordBank.includes(currentGuess)) {
         wordCheck(currentGuess);
         guessNum += 1;
         currentGuess = "";
