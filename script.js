@@ -126,13 +126,13 @@ function wordCheck(word) {
 }
 
 function winner() {
+    showPopup("Congratulations!")
     for (let i = 0; i < 7; i++) {
         let box = document.getElementById(`l${i+1}${guessNum}`)
         box.style.animation = "wave 0.7s";
 
     }
     guessNum = 7;
-    showPopup("Congratulations!")
 
 }
 
