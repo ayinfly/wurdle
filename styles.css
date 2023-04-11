@@ -46,7 +46,7 @@ h1 {
     align-content: center;
     grid-template-columns: repeat(7, 50px);
     grid-template-rows: repeat(7, 50px);
-    grid-gap: 10px;
+    grid-gap: 7px;
     color: white;
     text-transform: capitalize;
     padding-bottom: 50px;
