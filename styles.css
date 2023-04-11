@@ -36,7 +36,8 @@ button:active {
 h1 {
     text-align: center;
     color:white;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
+    margin: 0;
 }
 
 #board {
@@ -111,4 +112,29 @@ h1 {
     50% { transform: translateY(-5px) }
     75% { transform: translateY(5px) }
     100% { transform: translateY(0) }
+}
+
+
+#msg {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.popup {
+    font-size: small;
+    width: 150px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    background-color: white;
+    color: black;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.popup.show {
+    opacity: 1;
 }

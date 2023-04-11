@@ -82,6 +82,11 @@ function keySubmit() {
             box.style.animation = "horizontal-shaking 0.3s";
 
         }
+        if (currentGuess.length < 7) {
+            showPopup("Not enough letters");
+        } else {
+            showPopup("Not in word list");
+        }
     }
 }
 
@@ -127,6 +132,7 @@ function winner() {
 
     }
     guessNum = 7;
+    showPopup("Congratulations!")
 
 }
 
@@ -145,4 +151,14 @@ function colorKey(key, color) {
     } else if (styles.backgroundColor != "rgb(2, 48, 32)" && styles.backgroundColor != "rgb(139, 128, 0)") {
         item.style.backgroundColor = "rgb(48, 48, 48)";
     }
+}
+
+function showPopup(text) {
+    let popup = document.getElementById('popup');
+    popup.classList.add('show');
+    popup.textContent = text;
+  
+    setTimeout(function() {
+      popup.classList.remove('show');
+    }, 2000);
 }
